@@ -1,0 +1,34 @@
+h6{
+    text-align: center;
+    font-family: "Times New Roman", helvetica, arial, sans-serif;
+    font-size:15px;
+    font-weight: bold;
+    text-transform: lowercase;
+    -webkit-font-smoothing: antialiased;
+    color: red;
+    padding: 10px 0;
+}
+table{
+    margin-right:100px;
+}
+header{
+    font-weight: bolder;
+    color:blue;
+}
+.cl{
+    align-items: flex-start;
+}
+h5{
+    outline-color: blue;
+}
+.scount{
+    align-items:inherit;
+    border-style:inherit;
+    border-width: 10px;
+    color:midnightblue;
+    font-size:25px;
+    text-align:left;
+}
+h4{
+    color:darkviolet;
+}

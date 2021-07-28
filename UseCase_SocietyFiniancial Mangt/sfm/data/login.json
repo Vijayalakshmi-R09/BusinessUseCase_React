@@ -1,0 +1,14 @@
+{
+    "cred":[
+        {
+            "id":1,
+            "aname":"Admin",
+            "apwd":"Admin1234"
+        },
+        {
+            "id":2,
+            "uname":"User",
+            "apwd":"User1234"
+        }
+    ]
+}
