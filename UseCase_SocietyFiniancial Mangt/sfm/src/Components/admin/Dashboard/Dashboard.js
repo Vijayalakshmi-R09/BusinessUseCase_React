@@ -34,7 +34,7 @@ export default function Dashboard() {
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="#">
+                    <a href="/admin/vendordetails">
                        <i class="fa fa-folder-open fa-2x"></i>
                         <span class="nav-text">
                             Vendor Details
@@ -43,7 +43,7 @@ export default function Dashboard() {
                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/admin/complaint">
                         <i class="fa fa-bar-chart-o fa-2x"></i>
                         <span class="nav-text">
                             Complaint Request

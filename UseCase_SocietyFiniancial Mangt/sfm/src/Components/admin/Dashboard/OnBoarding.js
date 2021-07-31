@@ -24,8 +24,9 @@ export default function OnBoarding()
         bloodgp : Yup.string().required("must"),
         block : Yup.string().required("must"),
         house : Yup.string().required("must"),
-        naddress : Yup.string().required("must"),
-        oaddress : Yup.string().required("must"),
+        state : Yup.string().required("must"),
+        city: Yup.string().required("must"),
+        zcode: Yup.number().required("must"),
     })
 
 
@@ -41,14 +42,13 @@ export default function OnBoarding()
             bloodgp :'',
             block:'',
             house:'',
-            area:'',
+            state:'',
             city:'',
             zcode:'',
-            oaddress:''
                },
         validationSchema,
         onSubmit(values) {
-            axios.post("http://localhost:8080/api/userdetails",values).then(res=>res.data).then((data)=>{
+            axios.post("http://localhost:8080/api/house",values).then(res=>res.data).then((data)=>{
                   alert("User Onboarded successfully");
                   console.log("=============Submitted");
                   console.log(data);
@@ -100,7 +100,7 @@ export default function OnBoarding()
                 <div className="col-sm-1 form-group">
                     <label className="control-label">:</label></div>
                         <div className="col-sm-1 form-group">
-                            <input type="text" name="age" onChange={handleChange} values={values.age} placeholder="age" /> 
+                            <input type="text" name="age" onChange={handleChange} values={values.age} placeholder="Age" /> 
                             <h6>{errors.age ? errors.age : null}</h6>
                         </div>
                
@@ -152,7 +152,7 @@ export default function OnBoarding()
                 <div className="col-sm-1 form-group">
                     <label className="control-label">:</label></div>
                         <div className="col-sm-1 form-group">
-                            <input  type="text" name="bloodgp" onChange={handleChange} values={values.bloodgp} placeholder="bloodgp" /> 
+                            <input  type="text" name="bloodgp" onChange={handleChange} values={values.bloodgp} placeholder="Bloodgp" /> 
                             <h6> {errors.bloodgp ? errors.bloodgp : null}</h6>
                         </div>
                 </div>
@@ -172,19 +172,19 @@ export default function OnBoarding()
                 <div className="col-sm-1 form-group">
                     <label className="control-label">:</label></div>
                         <div className="col-sm-1 form-group">
-                            <input  type="text" name="house" onChange={handleChange} values={values.block} placeholder="House no" /> 
+                            <input  type="text" name="house" onChange={handleChange} values={values.house} placeholder="House no" /> 
                             <h6> {errors.house ? errors.house : null}</h6>
                         </div>
                 </div>
                 <div className="row">
                 <div className="col-sm-2 form-group">
-                    <h5>Locality</h5>
+                    <h5>State</h5>
                 </div>
                 <div className="col-sm-1 form-group">
                     <label className="control-label">:</label></div>
                         <div className="col-sm-1 form-group">
-                            <input  type="text" name="area" onChange={handleChange} values={values.naddress} placeholder="Area" /> 
-                            <h6> {errors.area? errors.area : null}</h6>
+                            <input  type="text" name="state" onChange={handleChange} values={values.state} placeholder="State" /> 
+                            <h6> {errors.state? errors.state : null}</h6>
                         </div>
                 
                 <div className="col-md-4 form-group">
@@ -193,7 +193,7 @@ export default function OnBoarding()
                 <div className="col-sm-1 form-group">
                     <label className="control-label">:</label></div>
                         <div className="col-md-1 form-group">
-                            <input type="text   " name="city" onChange={handleChange} values={values.oaddress} placeholder="City" /> 
+                            <input type="text   " name="city" onChange={handleChange} values={values.city} placeholder="City" /> 
                             <h6> {errors.city? errors.city : null}</h6>
                         </div>
                 </div>
@@ -204,19 +204,10 @@ export default function OnBoarding()
                 <div className="col-sm-1 form-group">
                     <label className="control-label">:</label></div>
                         <div className="col-sm-1 form-group">
-                            <input  type="text" name="area" onChange={handleChange} values={values.zcode} placeholder="pincode" /> 
+                            <input  type="text" name="zcode" onChange={handleChange} values={values.zcode} placeholder="pincode" /> 
                             <h6> {errors.zcode? errors.zcode : null}</h6>
                         </div>
-                <div className="col-md-4 form-group">
-                    <h5>Old Address</h5>
-                </div>
-                <div className="col-sm-1 form-group">
-                    <label className="control-label">:</label></div>
-                        <div className="col-md-1 form-group">
-                            <textarea name="oaddress" onChange={handleChange} values={values.oaddress} placeholder="Old Address" /> 
-                            <h6> {errors.oaddress? errors.oaddress : null}</h6>
                         </div>
-                </div>
                     <button className="btn btn-dark">Submit </button>
             </form>
             </div>

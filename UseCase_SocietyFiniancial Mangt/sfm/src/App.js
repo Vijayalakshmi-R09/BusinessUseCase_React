@@ -8,6 +8,9 @@ import Logout from './Components/login/Logout';
 import OnBoarding from './Components/admin/Dashboard/OnBoarding';
 import UserProfile from './Components/user/UserProfile';
 import OwnerDetails from './Components/admin/Dashboard/OwnerDetails';
+import Complaint from './Components/admin/Dashboard/Complaint';
+import VendorDetails from './Components/admin/Dashboard/VendorDetails';
+import ComplaintReq from './Components/user/ComplaintReq';
 function App() {
   return (
     <div className="App">
@@ -22,9 +25,11 @@ function App() {
        <Route path="/logout" exact component={Logout}></Route>
        <Route path="/user/dashboard" exact component={UDashboard}></Route>
        <Route path="/user/userprofile" exact component={UserProfile}></Route>
+       <Route path="/user/complaintrequest" exact component={ComplaintReq}></Route>
        <Route path="/admin/ownerdetails" exact component={OwnerDetails}></Route>
-       {/* <Route path="/complaint" exact component={ComplaintRequest}></Route>
-       <Route path="/profile" exact component={ProfileDetails}></Route> */}
+       <Route path="/admin/complaint" exact component={Complaint}></Route>
+       <Route path="/admin/vendordetails" exact component={VendorDetails}></Route>
+       
        
      </Switch>
    

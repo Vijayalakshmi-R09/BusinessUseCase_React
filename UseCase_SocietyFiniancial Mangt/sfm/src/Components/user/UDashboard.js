@@ -33,7 +33,7 @@ export default function UDashboard() {
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="#">
+                    <a href="/user/complaintrequest">
                        <i class="fa fa-folder-open fa-2x"></i>
                         <span class="nav-text">
                             Complaint Request
