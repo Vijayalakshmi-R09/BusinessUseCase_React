@@ -3,6 +3,10 @@ import './Dashboard.css'
 export default function UDashboard() {
     return (
         <div>
+             <div className="col-md">
+            <div className="card text-white bg-secondary"> 
+            <div className="card-header"><h3>WELCOME TO USER DASHBOARD</h3></div>
+            </div></div> 
              <body><div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
@@ -24,7 +28,7 @@ export default function UDashboard() {
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="#">
+                    <a href="/user/events">
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text">
                             Events
@@ -42,7 +46,7 @@ export default function UDashboard() {
                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/user/complaintstatus">
                         <i class="fa fa-bar-chart-o fa-2x"></i>
                         <span class="nav-text">
                             Complaint Status

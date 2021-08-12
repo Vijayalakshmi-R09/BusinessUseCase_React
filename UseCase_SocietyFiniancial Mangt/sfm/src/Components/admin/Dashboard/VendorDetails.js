@@ -1,10 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import Dashboard from './Dashboard'
 import './Vendor.css'
+import { Modal,Button } from 'react-bootstrap';
+import axios from 'axios';
 export default function VendorDetails() 
 {
     const[res,setResult]=useState([]);
     const[res1,setResult1]=useState([]);
+
+
     useEffect(()=>{
         fetch("http://localhost:8080/api/vendordetails").then(res => res.json()).then(data=>{
           console.log(data);
@@ -16,6 +20,18 @@ export default function VendorDetails()
           console.log("I am in finally");
         })
     },[res1])
+    const deletevendor  =(e)=>{
+        e.preventDefault();
+        const id=e.target.id;
+        const url=`http://localhost:8080/api/vendordetails/${id}`
+        axios.delete(url)
+        .then(res1 => {
+          console.log(res1);
+          alert("Record Deleted!")
+          setResult1(res1.data);
+          console.log(res1.data);
+        })
+    }
     return (
         <div>
             <Dashboard />
@@ -50,28 +66,11 @@ export default function VendorDetails()
                     <td><label key={x.id}>{x.company}</label></td>
                     <td><label key={x.id}>{x.companyaddress}</label></td>
                     <td><label key={x.id}>{x.speciality}</label></td>
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewModal">View</button></td>
-                    <td><button className="btn btn-success" >Edit</button></td>
+                    <td><Button variant="danger" id={x.id} onClick={deletevendor}> Delete</Button></td>
+                    {/* <td><button className="btn btn-success" >Edit</button></td> */}
                     </tr></>})}
                 </tbody>
             </table>
-            <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            </div>
-        </div>
-        </div>
             </div>
         </div>
     </div></div>

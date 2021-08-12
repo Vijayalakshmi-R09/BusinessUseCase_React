@@ -23,5 +23,9 @@ public class VendorManagerImpl implements VendorManager{
     public List<VendorDetails> fetchAllVendor() {
         return vrepo.findAll();
     }
-    
+
+    @Override
+    public void deleteVendor(Integer id) {
+        vrepo.deleteById(id);   
+    }   
 }

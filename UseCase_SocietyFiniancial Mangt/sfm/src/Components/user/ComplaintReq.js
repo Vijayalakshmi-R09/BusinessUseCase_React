@@ -1,7 +1,44 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react';
+import {useFormik} from 'formik';
+import * as Yup from 'yup';
 import UDashboard from './UDashboard'
 import './ComplaintReq.css'
-export default function ComplaintReq() {
+import axios from 'axios';
+export default function ComplaintReq() 
+{
+  const [submitted, setSubmitted] = useState(false);
+  const [res,setRes] = useState(0);
+
+  const validationSchema = Yup.object({
+     sub: Yup.string().required("required"),
+     msg : Yup.string().required("required"),
+     days : Yup.string().required("required"),
+     block : Yup.string().required("required"),
+     house : Yup.string().required("required")
+    })
+    const { handleSubmit,handleChange,values,errors} = useFormik({
+      initialValues: {
+          sub:'',
+          msg:'',
+          status:'',
+          days:0,
+          block:'',
+          house:''
+             },
+      validationSchema,
+      onSubmit(values) {
+          axios.post("http://localhost:8080/api/complaint",values).then(res=>res.data).then((data)=>{
+                alert("Complaint registered");
+                console.log("=============Submitted");
+                console.log(values);
+                setSubmitted(true);
+          }
+          ).catch((err)=>{
+                  console.log("err")
+              })
+      }
+  }) 
+
     return (
         <div>
              <UDashboard />       
@@ -42,38 +79,49 @@ export default function ComplaintReq() {
 <br/>
 <div className="container-md">
 <div class="card">
+<form onSubmit={handleSubmit} noValidate>
 <div class="card-body">
   <div class="row">
   <div class="col-sm-4 form-group ">
-    <label>Subject </label><br/>
-    <select name="work" class="form-control"><br/>
-      <option value="Electrical">Electrical</option>
-      <option value="Plumbing">Plumbing</option>
-      <option value="Gardener">Gardener</option>    
-      <option value="Cleaning">Cleaning</option>
-    </select>
+    <label>Subject </label> <br/>
+    <input type="text" name="sub" onChange={handleChange} values={values.sub} placeholder="Electrical/Plumbing.."/>
+    <h6>{errors.sub ? errors.sub : null}</h6>
     </div>
     <div class="col-sm-4 form-group ">
-    <label>Compaint Message </label>
-    <textarea id="form7" class="md-textarea form-control "  rows="3" placeholder="Complaint Message"></textarea>    
+    <label>Compaint Message:</label>
+    <textarea class="textarea form-control " name="msg" onChange={handleChange} values={values.msg} rows="2" placeholder="Complaint Message"></textarea>    
+    <h6>{errors.msg ? errors.msg : null}</h6>
   </div>
+  <div class="col-sm-4 form-group ">
+        <label>Status </label>
+        <input type="text" class="form-control " name="status"  values={values.status}/>
+        <h6>{errors.status ? errors.status : null}</h6>
+        </div>
   </div>
     <div class="row">
       <div class="col-sm-4 form-group ">
-        <label >Duration of Days</label>
-        <input type= "text" class="form-control " placeholder="Duration of Days"/>
+        <label >Duration (in Days)</label>
+        <input type= "text" class="form-control " name="days" onChange={handleChange} values={values.days} placeholder="Duration of Days"/>
+        <h6>{errors.days ? errors.days : null}</h6>
         </div>
         <div class="col-sm-4 form-group ">
-        <label>Others </label>
-        <input type="text" class="form-control " placeholder="Others"/>
+        <label>Block No: </label>
+        <input type="text" class="form-control " name="block" onChange={handleChange} values={values.block} placeholder="block no."/>
+        <h6>{errors.block ? errors.block : null}</h6>
+        </div>
+        <div class="col-sm-4 form-group ">
+        <label>House No: </label>
+        <input type="text" class="form-control " name="house" onChange={handleChange} values={values.house} placeholder="house no."/>
+        <h6>{errors.house ? errors.house : null}</h6>
         </div>
       </div>
     </div><br/>
     <div class="text-center " >
-      <button  class="btn btn-success ">FILE COMPLAINT</button>
+      <button  class="btn btn-success" type="submit">RAISE COMPLAINT</button>
     </div>
+    </form>
   </div>
   </div>
-        </div>
+  </div>
     )
 }

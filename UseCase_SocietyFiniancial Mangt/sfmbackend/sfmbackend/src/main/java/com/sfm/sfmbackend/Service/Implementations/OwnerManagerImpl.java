@@ -1,6 +1,7 @@
 package com.sfm.sfmbackend.Service.Implementations;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.sfm.sfmbackend.Entity.OwnerDetails;
 import com.sfm.sfmbackend.Repository.OwnerRepo;
@@ -25,6 +26,16 @@ public class OwnerManagerImpl implements OwnerManager{
     public List<OwnerDetails> fetchAllOwner() {
         
         return orepo.findAll();
+    }
+
+    @Override
+    public void deleteOwner(Integer id) {
+        orepo.deleteById(id);
+    }
+
+    @Override
+    public Optional<OwnerDetails> fetchOwner(Integer id) {
+        return orepo.findById(id);
     }
     
 }

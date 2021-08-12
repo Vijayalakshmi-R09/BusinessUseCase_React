@@ -3,7 +3,11 @@ import './Dashboard.css'
 export default function Dashboard() {
     return (
         <div>
-            
+      
+            <div className="col-md">
+            <div className="card text-white bg-secondary"> 
+            <div className="card-header"><h3>WELCOME TO ADMIN DASHBOARD</h3></div>
+            </div></div>
   <body><div class="area"></div><nav class="main-menu">
             <ul>
                 <li>

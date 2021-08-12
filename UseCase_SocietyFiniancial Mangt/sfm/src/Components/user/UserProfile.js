@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 export default function UserProfile() 
 {
 	const[res,setResult]=useState([]);
-	const[address,setAddress]=useState([]);
 	const { id } = useParams();
 	console.log(id);		
 	const loadUser = async () => {
@@ -18,18 +17,7 @@ export default function UserProfile()
 		loadUser();  
 	}, []);
 
-    // useEffect(()=>{
-    //     fetch("http://localhost:8080/api/userdetails/").then(res => res.json()).then(data=>{
-	// 	  console.log("hi");
-    //       console.log(data);
-    //       setResult(data);
-    //     }).catch(e=>{
-    //       console.error("ERR in user...");
-    //       console.error(e);
-    //     }).finally(()=>{
-    //       console.log("I am in finally");
-    //     })
-    // },[])
+   
     
 
     return (

@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
  import Dashboard from './Dashboard'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function OwnerDetails() 
 {
@@ -17,6 +18,17 @@ export default function OwnerDetails()
           console.log("I am in finally");
         })
     },[res1])
+    const deleteowner   =(e)=>{
+        e.preventDefault();
+        const id=e.target.id;
+        const url=`http://localhost:8080/api/ownerdetails/${id}`
+        axios.delete(url)
+        .then(res1 => {
+          console.log(res1);
+          setResult1(res1.data);
+          console.log(res1.data);
+        })
+    }
     return (
         <div>
             <Dashboard />
@@ -48,8 +60,8 @@ export default function OwnerDetails()
                     <td><label key={x.id}>{x.phonenumber}</label></td>
                     <td><label key={x.id}>{x.blockno}</label></td>
                     <td><label key={x.id}>{x.houseno}</label></td>
-                    <td><button className="btn btn-primary" >View</button></td>
-                    <td><button className="btn btn-success" >Edit</button></td>
+                    <td><Link  id={x.id}  to={`/ownerdetails/${x.id}`} className="btn btn-primary active">Edit</Link></td>
+                    <td><button className="btn btn-danger" id={x.id} onClick={deleteowner} >Delete</button></td>
                     </tr></>})}
                 </tbody>
             </table>

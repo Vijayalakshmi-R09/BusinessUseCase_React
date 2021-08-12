@@ -10,4 +10,5 @@ public interface VendorManager {
     //public Optional<Userdetails> fetchUser(Integer id);
 
     public List<VendorDetails> fetchAllVendor();
+    public void deleteVendor(Integer id);
 }

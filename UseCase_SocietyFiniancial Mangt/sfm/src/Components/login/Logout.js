@@ -3,7 +3,7 @@ import React from 'react'
 export default function Logout() {
     return (
         <div>
-             <div className="container-lg">
+            <div className="container-lg">
             <div className="col-md-40">
             <div className="card"> 
             <div className="card-header">LOGGED OUT</div>
